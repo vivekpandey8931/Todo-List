@@ -9,7 +9,13 @@ const taskinput=document.querySelector('#task');
 
 loadEventListener();
 function loadEventListener(){
+    //adding tak to list
     form.addEventListener('submit',addTask);
+    //remove tak from the list
+    tasklist.addEventListener('click',removeTask);
+    //clear task
+    clearbtn.addEventListener('click',clearTasks);
+
 
 }
 
@@ -35,9 +41,32 @@ function addTask(e){
        //append li to ul
        tasklist.appendChild(li);
        taskinput.value='';
-       console.log(li);
+    //    console.log(li);
     }
 
     e.preventDefault();
+}
+
+//remove task
+function removeTask(e){
+    if(e.target.parentElement.classList.contains('delete-item')){
+        if(confirm('are you sure?')){
+        e.target.parentElement.parentElement.remove();
+        console.log(e.target);
+        }
+    }
+
+}
+
+//clear task
+
+function clearTasks(e){
+// tasklist.innerHTML=''
+
+//Faster
+while(tasklist.firstChild){
+    tasklist.removeChild(tasklist.firstChild);
+
+}
 
 }
